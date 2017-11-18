@@ -5,17 +5,17 @@
 #include <iostream>
 #include <fstream>
 
-class Zones : public GameObject
+class Zone1 : public GameObject
 {
 public:
-	Zones();
-	virtual ~Zones();
+	Zone1();
+	virtual ~Zone1();
 	
 	bool increaseHealthZone = true, decreaseHealthZone = false, isPlayerInside = false;
 	int healAmount = 10, damageAmount = 10;
 
-	virtual void Zones::Save(std::ofstream & fs);
-	virtual void Zones::Load(std::ifstream & fs);
+	virtual void Zone1::Save(std::ofstream & fs);
+	virtual void Zone1::Load(std::ifstream & fs);
 
 	// A function for getting  the type of the object.
 	virtual std::string GetType()

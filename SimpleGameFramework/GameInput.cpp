@@ -35,18 +35,22 @@ void GameInput::Update(double deltaTime)
 	if (GetKeyState('W') & 0x8000)
 	{
 		// These are the input for the canvas movement during the edit move.
+		if(GameManagerInstance.inEditMode)
 		input.Y = -editModeCanvasMovementSpeed;
 	}
 	if (GetKeyState('A') & 0x8000)
 	{
+		if (GameManagerInstance.inEditMode)
 		input.X = -editModeCanvasMovementSpeed;
 	}
 	if (GetKeyState('S') & 0x8000)
 	{
+		if (GameManagerInstance.inEditMode)
 		input.Y = editModeCanvasMovementSpeed;
 	}
 	if (GetKeyState('D') & 0x8000)
 	{
+		if (GameManagerInstance.inEditMode)
 		input.X = editModeCanvasMovementSpeed;
 	}
 
@@ -85,7 +89,13 @@ void GameInput::OnKeyDown(UINT keyCode, UINT repeatCount)
 
 		break;
 
+	case VK_TAB:
 
+		if (GameManagerInstance.inEditMode == false)
+			GameManagerInstance.inEditMode = true;
+		else
+			GameManagerInstance.inEditMode = false;
+		break;
 
 	case VK_DELETE:
 		// delete all in level.
@@ -126,6 +136,8 @@ void GameInput::OnKeyDown(UINT keyCode, UINT repeatCount)
 		{
 			// Than Set it to walls
 			GameManagerInstance.objToPlace = "Walls";
+			GameManagerInstance.UISelectorRecStartPoint = (182, 532);
+			GameManagerInstance.UISelectorRecEndPoint = (222, 572);
 			DebugLog("Wall And Ground Object Selected. Left Click To Place, And Right Click To Remove.")
 		}
 		break;
@@ -134,6 +146,8 @@ void GameInput::OnKeyDown(UINT keyCode, UINT repeatCount)
 		if (GameManagerInstance.objToPlace != "Doors")
 		{
 			GameManagerInstance.objToPlace = "Doors";
+			GameManagerInstance.UISelectorRecStartPoint = (182, 532);
+			GameManagerInstance.UISelectorRecEndPoint = (222, 572);
 			DebugLog("Door Object Selected. Left Click To Place, And Right Click To Remove.")
 		}
 		break;
@@ -142,6 +156,8 @@ void GameInput::OnKeyDown(UINT keyCode, UINT repeatCount)
 		if (GameManagerInstance.objToPlace != "Players")
 		{
 			GameManagerInstance.objToPlace = "Players";
+			GameManagerInstance.UISelectorRecStartPoint = (182, 532);
+			GameManagerInstance.UISelectorRecEndPoint = (222, 572);
 			DebugLog("Player Object Selected. Left Click To Place, And Right Click To Remove.")
 		}
 		break;
@@ -150,6 +166,8 @@ void GameInput::OnKeyDown(UINT keyCode, UINT repeatCount)
 		if (GameManagerInstance.objToPlace != "Enemys")
 		{
 			GameManagerInstance.objToPlace = "Enemys";
+			GameManagerInstance.UISelectorRecStartPoint = (182, 532);
+			GameManagerInstance.UISelectorRecEndPoint = (222, 572);
 			DebugLog("Enemys Object Selected. Left Click To Place, And Right Click To Remove.")
 		}
 		break;
@@ -158,17 +176,31 @@ void GameInput::OnKeyDown(UINT keyCode, UINT repeatCount)
 		if (GameManagerInstance.objToPlace != "Keys")
 		{
 			GameManagerInstance.objToPlace = "Keys";
+			GameManagerInstance.UISelectorRecStartPoint = (182, 532);
+			GameManagerInstance.UISelectorRecEndPoint = (222, 572);
 			DebugLog("Key Object Selected. Left Click To Place, And Right Click To Remove.")
 		}
 		break;
 	case '6':
 		// Same as Walls but for the Zones and you press 6
-		if (GameManagerInstance.objToPlace != "Zones")
-		{
-			GameManagerInstance.objToPlace = "Zones";
-			DebugLog("Key Object Selected. Left Click To Place, And Right Click To Remove.")
+		if (GameManagerInstance.objToPlace != "Zone1")
+		{			
+			GameManagerInstance.objToPlace = "Zone1";
+			GameManagerInstance.UISelectorRecStartPoint = (150, 531);
+			GameManagerInstance.UISelectorRecEndPoint = (191, 572);
+			DebugLog("Zone1 Object Selected. Left Click To Place, And Right Click To Remove.")
 		}
-		break;
+		break; 
+	case '7':
+			// Same as Walls but for the Zones and you press 6
+			if (GameManagerInstance.objToPlace != "Zone2")
+			{
+				GameManagerInstance.objToPlace = "Zone2";
+				/*GameManagerInstance.UISelectorRecStartPoint = (181, 531);
+				GameManagerInstance.UISelectorRecEndPoint = (223, 573);*/
+				DebugLog("Zone2 Object Selected. Left Click To Place, And Right Click To Remove.")
+			}
+			break;
 
 	case VK_F1:
 		break;

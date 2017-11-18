@@ -14,7 +14,7 @@
     <ProjectGuid>{998FCAA3-F39D-4DA4-990B-5356492FC581}</ProjectGuid>
     <RootNamespace>MySimpleGameFramework</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -22,7 +22,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -127,7 +127,8 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TinyXML2\tinyxml2.h" />
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="Zones.h" />
+    <ClInclude Include="Zone2.h" />
+    <ClInclude Include="Zone1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppConfig.cpp" />
@@ -148,7 +149,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TinyXML2\tinyxml2.cpp" />
-    <ClCompile Include="Zones.cpp" />
+    <ClCompile Include="Zone2.cpp" />
+    <ClCompile Include="Zone1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SimpleGameFramework.rc" />

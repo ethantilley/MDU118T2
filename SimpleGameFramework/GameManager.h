@@ -56,6 +56,9 @@ public:
 
 	Vector2i levelOffset;
 
+	Vector2i UISelectorRecEndPoint;
+	Vector2i UISelectorRecStartPoint;	
+
 	// Following two ints are for the images snapped locations so the placement is more consistance and precise.
 
 	// Keep the same as the objects general resolution size (40)
@@ -69,6 +72,8 @@ public:
 
 	// A value that states the version of this app.
 	int versionNumber = 1;
+
+	bool inEditMode = true;
 
 	// A function for when i left click which i use to place and remove.
 	void LeftButtonDown(const Vector2i& point);

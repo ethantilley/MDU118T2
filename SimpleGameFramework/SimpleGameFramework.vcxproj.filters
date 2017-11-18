@@ -102,13 +102,16 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files\MDU118.2_Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Zones.h">
-      <Filter>Header Files\MDU118.2_Headers</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\MDU118.2_Headers</Filter>
     </ClInclude>
     <ClInclude Include="Key.h">
+      <Filter>Header Files\MDU118.2_Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone1.h">
       <Filter>Header Files\MDU118.2_Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -152,13 +155,16 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\MDU118.2_CPPs</Filter>
     </ClCompile>
-    <ClCompile Include="Zones.cpp">
-      <Filter>Source Files\MDU118.2_CPPs</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files\MDU118.2_CPPs</Filter>
     </ClCompile>
     <ClCompile Include="Key.cpp">
+      <Filter>Source Files\MDU118.2_CPPs</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone1.cpp">
       <Filter>Source Files\MDU118.2_CPPs</Filter>
     </ClCompile>
   </ItemGroup>

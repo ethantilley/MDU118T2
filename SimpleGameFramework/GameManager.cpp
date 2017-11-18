@@ -6,7 +6,8 @@
 #include "Player.h" 
 #include "Enemy.h"
 #include "Key.h"
-#include "Zones.h"
+#include "Zone1.h"
+#include "Zone2.h"
 
 GameManager& GameManager::Instance()
 {
@@ -64,12 +65,14 @@ void GameManager::BeginPlay()
 	// Getting the image for the Key through the files
 	GameFrameworkInstance.LoadImageResource
 	(AppConfigInstance.GetResourcePath
-	("Images/Zone.png"), "Zone"
+	("Images/Zone1.png"), "Zone1"
 	);
 
-
-	//TODO,  isert zone 2 later
-
+	// Getting the image for the Key through the files
+	GameFrameworkInstance.LoadImageResource
+	(AppConfigInstance.GetResourcePath
+	("Images/Zone2.png"), "Zone2"
+	);
 
 	// Getting the image for the Key through the files
 	GameFrameworkInstance.LoadImageResource
@@ -107,21 +110,26 @@ void GameManager::Render(Gdiplus::Graphics& canvas, const CRect& clientRect)
 
 	// Here is where the movement with W,A,S,D is acually being used to move the canvas.
 	canvas.TranslateTransform((Gdiplus::REAL) levelOffset.X, (Gdiplus::REAL) levelOffset.Y);
+	
+	//Player.TranslateTransform((Gdiplus::REAL) levelOffset.X, (Gdiplus::REAL) levelOffset.Y);
 
 	// These all call the draw function in the scripts of the object im trying to place.
 	for (GameObject* objToDraw : levelObjects)
 	{
 		objToDraw->Draw(canvas);
 	}
-
 	// Restore the transformation of the canvas
+	GameFrameworkInstance.DrawRectangle(canvas, AABBi(Vector2i(UISelectorRecStartPoint.X, UISelectorRecStartPoint.Y), Vector2i(UISelectorRecEndPoint.X, UISelectorRecEndPoint.Y)), false, Gdiplus::Color::Gold);
+
 	canvas.SetTransform(&transform);
 
 	ImageWrapper* uiimage = GameFrameworkInstance.GetLoadedImage("EditGameUI");
-
+	
 	// Draw UI after here so it dosn't move.
-	GameFrameworkInstance.DrawImage(canvas, Vector2i(0, 0), uiimage);
+	//GameFrameworkInstance.DrawImage(canvas, Vector2i(0, 0), uiimage);
 
+	
+	 
 }
 // Called when pressing the '-' key.
 void GameManager::Save()
@@ -156,7 +164,7 @@ void GameManager::Load()
 
 	// Grabbing the save file.
 	std::ifstream loadLevel("Objects.level");
-	
+
 	// Making and Setting a int as the number of game objects in the level
 	int gameObjectsToLoad = 0;
 	gameObjectsToLoad = levelObjects.size();
@@ -197,8 +205,12 @@ void GameManager::Load()
 			objectPtr = new Player();
 
 		//--------Zones Objects--------//
-		else if (GOType == "GameObjects.Zone")
-			objectPtr = new Zones();
+		else if (GOType == "GameObjects.Zone1")
+			objectPtr = new Zone1();
+
+		//--------Zones Objects--------//
+		else if (GOType == "GameObjects.Zone2")
+			objectPtr = new Zone2();
 
 
 		// If there was one add it to the levelobjects list.
@@ -274,9 +286,12 @@ void GameManager::LeftButtonDown(const Vector2i & point)
 	else if (objToPlace == "Walls")
 		newObjectPtr = new GameObject();
 
-	// !!--------Placement for Zones Object--------!! //
+	// !!--------Placement for Zone1 Object--------!! //
+	else if (objToPlace == "Zone1")
+		newObjectPtr = new Zone1();
+
 	else
-		newObjectPtr = new Zones();
+		newObjectPtr = new Zone2();
 
 	// setted there location to the snapped location and 
 	newObjectPtr->location = imgSnapppedLocation;
