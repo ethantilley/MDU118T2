@@ -77,6 +77,8 @@ public:
 
 	void DeleteKeyPressed();
 
+	void CleanUpMemory();
+
 	// A string that i can change in the game input and depending on that sting ill place a object.
 	std::string objToPlace = "Players";
 

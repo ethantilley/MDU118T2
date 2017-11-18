@@ -67,6 +67,19 @@ void GameManager::BeginPlay()
 	("Images/Zone.png"), "Zone"
 	);
 
+
+	//TODO,  isert zone 2 later
+
+
+	// Getting the image for the Key through the files
+	GameFrameworkInstance.LoadImageResource
+	(AppConfigInstance.GetResourcePath
+	("Images/UI.png"), "EditGameUI"
+	);
+
+
+
+
 	objectPtr = new GameObject();
 	objectPtr->location = Vector2i(20, 20);
 
@@ -75,13 +88,8 @@ void GameManager::BeginPlay()
 // When the game is cloesed here I delete stuff to stop memory from leaking.
 void GameManager::EndPlay()
 {
-	// Deleting Obect Ptr to stop memory leaks???
-	delete objectPtr;
-	// Looping throught the objects in level objetcs and deleting.
-	for (GameObject* objToDraw : levelObjects)
-	{
-		delete objToDraw;
-	}
+	// Clearing up the memory in a function.
+	CleanUpMemory();
 }
 
 void GameManager::Update(double deltaTime)
@@ -109,8 +117,10 @@ void GameManager::Render(Gdiplus::Graphics& canvas, const CRect& clientRect)
 	// Restore the transformation of the canvas
 	canvas.SetTransform(&transform);
 
+	ImageWrapper* uiimage = GameFrameworkInstance.GetLoadedImage("EditGameUI");
+
 	// Draw UI after here so it dosn't move.
-	GameFrameworkInstance.DrawText(canvas, Vector2i(5, 5), 8, "Arial", "Version 1.0", Gdiplus::Color::White);
+	GameFrameworkInstance.DrawImage(canvas, Vector2i(0, 0), uiimage);
 
 }
 // Called when pressing the '-' key.
@@ -140,9 +150,13 @@ void GameManager::Load()
 	// Resetting the level offset so it dosn't load weirdly.
 	levelOffset = Vector2i::Zero;
 
+	// Clearing up the memory in a function.
+	CleanUpMemory();
+
+
 	// Grabbing the save file.
 	std::ifstream loadLevel("Objects.level");
-
+	
 	// Making and Setting a int as the number of game objects in the level
 	int gameObjectsToLoad = 0;
 	gameObjectsToLoad = levelObjects.size();
@@ -280,7 +294,14 @@ void GameManager::MovementHappened(const Vector2i & input)
 
 void GameManager::DeleteKeyPressed()
 {
-	//clearing all objects in a way so it dosnt create memory leaks.
+	CleanUpMemory();
+}
+
+void GameManager::CleanUpMemory()
+{
+	// Deleting Obect Ptr to stop memory leaks???
+	delete objectPtr;
+	// Looping throught the objects in level objetcs and deleting.
 	for (GameObject* objToDraw : levelObjects)
 	{
 		delete objToDraw;
