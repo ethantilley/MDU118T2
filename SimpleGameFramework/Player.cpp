@@ -5,16 +5,12 @@ Player::Player()
 {
 	imageID = "Player";
 	type = "Plyr";
-
-	speed = 5;
-	jumpStrength = 5;
+	
+	gravityForce = 5;
+	jumpForce = 6;
 	currentHealth = 100;
 	maxHealth = 100;
-	damageToGive = 10;
-	score = 0;	
 	hasKey = false;
-	
-
 }
 
 
@@ -28,13 +24,11 @@ void Player::Save(std::ofstream & fs)
 	GameObject::Save(fs);
 
 	//Saves out all tha veriables
-	fs << speed << "," << jumpStrength << std::endl;
-
-	fs << currentHealth << "," << maxHealth << "," << damageToGive << "," << score << std::endl;
+	fs << gravityForce << "," << jumpForce << "," << currentHealth << "," << maxHealth << std::endl;
 
 	fs << hasKey << std::endl;
 
-	
+
 }
 
 void Player::Load(std::ifstream & fs)
@@ -43,19 +37,17 @@ void Player::Load(std::ifstream & fs)
 	GameObject::Load(fs);
 
 	// Loading out all the data
-	fs >> speed >> commer >> jumpStrength;
-
-	fs >> currentHealth >> commer >> maxHealth >> commer >> damageToGive >> commer >> score;
+	fs >> gravityForce >> commer >> jumpForce >> commer >> currentHealth >> commer >> maxHealth;
 
 	fs >> hasKey;
 
-	
+
 }
 
 // That Update function that's called every frame.
 void Player::Update(double deltaTime)
 {
-
+	
 }
 
 

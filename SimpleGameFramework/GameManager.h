@@ -6,11 +6,14 @@
 #include "GameFramework.h"
 
 // Includes for my game.
+#include "Zone1.h"
+#include "Zone2.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "GameObject.h"
 #include "Door.h"
 #include "Key.h"
+
 
 
 class GameManager
@@ -57,8 +60,11 @@ public:
 	Vector2i levelOffset;
 
 	Vector2i UISelectorRecEndPoint;
-	Vector2i UISelectorRecStartPoint;	
+	Vector2i UISelectorRecStartPoint;
 
+
+	AABBi bounds;
+	
 	// Following two ints are for the images snapped locations so the placement is more consistance and precise.
 
 	// Keep the same as the objects general resolution size (40)
@@ -67,13 +73,16 @@ public:
 	// Best to keep 20 to make clicking on the object to remove or clicking on a grid to place more fair and exact.
 	int clickGridSize = 20;
 
-	// The movement speed of the canvas using WASD keys.
-	int editModeCanvasMovementSpeed;
+	// The movement speed of the canvas/player using WASD keys.
+	int speed = 4;
 
 	// A value that states the version of this app.
-	int versionNumber = 1;
+	int versionNumber = 2;
 
 	bool inEditMode = true;
+
+	// A string for displaying the status of the file (wheather the its been saved or not).
+	std::string fileStatus = "UnSaved";
 
 	// A function for when i left click which i use to place and remove.
 	void LeftButtonDown(const Vector2i& point);
@@ -82,16 +91,22 @@ public:
 
 	void DeleteKeyPressed();
 
-	void CleanUpMemory();
+	void CleanUpMemory();	
+	
+	float endGameTimer = 3;
+	bool endGame = false;
 
 	// A string that i can change in the game input and depending on that sting ill place a object.
 	std::string objToPlace = "Players";
-
+	Player* player;
 private:
 
-	GameObject* objectPtr;
+	GameObject* gameObject;
 
-	// A list I use to store all the objects that I place and remove. 
+	Zone2* zone2;
+	Zone1* zone1;
+	Enemy* enemy;
+	// A list I use to store all the objects that I place and use it to remove. 
 	std::list<GameObject*> levelObjects;
 
 };

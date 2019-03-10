@@ -10,14 +10,14 @@ public:
 	Player();
 	virtual ~Player();
 
-	// The players private variables
-	float speed = 5;
-	int damageToGive = 10;
-	int score = 0;
-	float jumpStrength = 5;
+	// The players public variables	
 	bool hasKey = false;
+	bool grounded = true;
 	int currentHealth = 100;
-	int maxHealth = 100;
+	int maxHealth = 100;	
+	int gravityForce = 5;
+	int jumpForce = 6;
+	float jumpCountDown = 0;
 	
 
 	// A Update function (a called every frame) 

@@ -10,8 +10,6 @@ public:
 	Key();
 	virtual ~Key();
 
-	bool keyPickedUP = false;
-
 	// A Update function (a called every frame) 
 	void Update(double deltaTime);
 

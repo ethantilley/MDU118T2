@@ -9,11 +9,9 @@ Enemy::Enemy()
 	imageID = "Enemy";
 	// Setting the type I want this to save out as
 	type = "Enemy";
-	enemySpeed = 3.5;
+	enemySpeed = 2;
 	enemyDamageToGive = 5;
-	scoreToGive = 10;
-	enemyCurrentHealth = 100;
-	enemyMaxHealth = 100;
+	patrolRange = 100;
 }
 
 Enemy::~Enemy()
@@ -25,16 +23,13 @@ void Enemy::Save(std::ofstream & fs)
 	GameObject::Save(fs);
 
 	//Save all numeric data witt commas inbetween (nospaces)
-	fs << enemySpeed << std::endl;
-	fs << enemyCurrentHealth << "," << enemyMaxHealth << "," << enemyDamageToGive << "," << scoreToGive << std::endl;
+	fs << enemySpeed << "," << patrolRange << std::endl;
 }
 
 void Enemy::Load(std::ifstream & fs)
 {
 	GameObject::Load(fs);
-	fs >> enemySpeed;
-	//Save all numeric data witt commas inbetween (nospaces)
-	fs >> enemyCurrentHealth >> commer >> enemyMaxHealth >> commer >> enemyDamageToGive >> commer >> scoreToGive;
+	fs >> enemySpeed >> commer >> patrolRange;
 }
 
 // That Update function that's called every frame.

@@ -35,17 +35,18 @@ void GameObject::Load(std::ifstream & fs)
 
 void GameObject::Draw(Gdiplus::Graphics & canvas)
 {
-	// Setting up the canvas???
+	// re-positioning the canvas for this oject
 	Gdiplus::Matrix transform;
 	canvas.GetTransform(&transform);
 	canvas.TranslateTransform((Gdiplus::REAL)location.X, (Gdiplus::REAL)location.Y);	
 
 	//Getting the images identifyer and then,
 	ImageWrapper* image = GameFrameworkInstance.GetLoadedImage(imageID);
+	
 	// Drawing it.
 	GameFrameworkInstance.DrawImage(canvas, Vector2i(-20, -20), image);
 
-	//Resetting the canvas or it'll do some weird shit and move everything...
+	//Resetting the canvas so it dosn't move everything.
 	canvas.SetTransform(&transform);
 }
 // That Update function that's called every frame.

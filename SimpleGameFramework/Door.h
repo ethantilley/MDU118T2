@@ -11,12 +11,7 @@ class Door : public GameObject
 public:
 	Door();
 	virtual ~Door();
-
-
-	bool doorOpen = false, playerHasKey = false;
-
-
-
+	
 	//// Function for drawing the object on the canvas
 	//void Draw(Gdiplus::Graphics& canvas);
 	// A Update function (a called every frame) 

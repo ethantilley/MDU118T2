@@ -88,8 +88,7 @@ public:
 
 
 public:
-	// The speed that the canvas is being moved.
-	int editModeCanvasMovementSpeed = 4;
+	
 	
 
 private:

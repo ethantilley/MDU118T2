@@ -11,8 +11,8 @@ public:
 	Zone2();
 	virtual ~Zone2();
 
-	bool increaseHealthZone = false, decreaseHealthZone = true, isPlayerInside = false;
-	int healAmount = 10, damageAmount = 10;
+	bool isPlayerInside = false;
+	int damageAmount = 10;
 
 	virtual void Zone2::Save(std::ofstream & fs);
 	virtual void Zone2::Load(std::ifstream & fs);
